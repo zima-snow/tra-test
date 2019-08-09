@@ -1,0 +1,88 @@
+.render-flexbox(@direction; @wrap;) {
+  display: flex;
+  flex-flow: @direction @wrap;
+
+  &_h_l {
+    justify-content: flex-start;
+  }
+
+  &_h_c {
+    justify-content: center;
+  }
+
+  &_h_r {
+    justify-content: flex-end;
+  }
+
+  &_h_sb {
+    justify-content: space-between;
+  }
+
+  &_h_sa {
+    justify-content: space-around;
+  }
+
+  &_h_se {
+    justify-content: space-evenly;
+  }
+
+  &_v_t {
+    align-items: flex-start;
+  }
+
+  &_v_c {
+    align-items: center;
+  }
+
+  &_v_b {
+    align-items: flex-end;
+  }
+
+  &_v_s {
+    align-items: stretch;
+  }
+
+  &_v_bl {
+    align-items: baseline;
+  }
+
+  &_c_t {
+    align-content: flex-start;
+  }
+
+  &_c_c {
+    align-content: center;
+  }
+
+  &_c_b {
+    align-content: flex-end;
+  }
+
+  &_c_s {
+    align-content: stretch;
+  }
+
+  &_c_sb {
+    align-content: space-between;
+  }
+
+  &_c_sa {
+    align-content: space-around;
+  }
+}
+
+.fb-row {
+  .render-flexbox(row; nowrap);
+}
+
+.fb-col {
+  .render-flexbox(column; nowrap);
+}
+
+.fb-row-wrap {
+  .render-flexbox(row; wrap);
+}
+
+.fb-col-wrap {
+  .render-flexbox(column; wrap);
+}

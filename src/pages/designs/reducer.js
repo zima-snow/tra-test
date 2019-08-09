@@ -1,4 +1,4 @@
-import { DESIGN_PAGE_FILTERS_RECEIVE, DESIGN_PAGE_GET_BATCH_DATA } from './actions';
+import { DESIGNS_PAGE_FILTERS_RECEIVE, DESIGNS_PAGE_GET_BATCH_DATA } from './actions';
 
 const defaultState = {
   list: [],
@@ -32,9 +32,9 @@ function batchDataReceive(action, state) {
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case DESIGN_PAGE_FILTERS_RECEIVE:
+    case DESIGNS_PAGE_FILTERS_RECEIVE:
       return filtersReceive(action, state);
-    case DESIGN_PAGE_GET_BATCH_DATA:
+    case DESIGNS_PAGE_GET_BATCH_DATA:
       return batchDataReceive(action, state);
     default:
       return state;

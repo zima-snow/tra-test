@@ -1,4 +1,4 @@
-import DesignPageContainer from '../pages/design';
+import DesignsPageContainer from '../pages/designs';
 
 import { MainLayout } from '../layouts';
 
@@ -9,7 +9,7 @@ export default {
     path: '/designs',
     exact: true,
     title: 'Designs',
-    component: DesignPageContainer,
+    component: DesignsPageContainer,
     layout: MainLayout,
     onEnterAction: traTestShowPage('designs', 'show'),
   },
@@ -17,7 +17,7 @@ export default {
     path: '/design/:id',
     exact: true,
     title: 'Design Edit',
-    component: DesignPageContainer,
+    component: DesignsPageContainer,
     layout: MainLayout,
     onEnterAction: traTestShowPage('design', 'edit'),
   },

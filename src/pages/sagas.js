@@ -1,4 +1,4 @@
-import { designsSaga } from './design/sagas';
+import { designsSaga } from './designs/sagas';
 
 const sagas = [designsSaga];
 
