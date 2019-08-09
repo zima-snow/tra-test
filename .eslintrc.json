@@ -1,0 +1,58 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2019,
+    "sourceType": "module"
+  },
+  "extends": [
+    "airbnb",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "prettier",
+    "react-hooks"
+  ],
+  "rules": {
+    "linebreak-style": "off",
+    "arrow-parens": "off",
+    "object-curly-newline": "off",
+    "no-mixed-operators": "off",
+    "arrow-body-style": "off",
+    "function-paren-newline": "off",
+    "no-plusplus": "off",
+    "space-before-function-paren": 0,
+
+    "max-len": ["error", 100, 2, { "ignoreUrls": true }],
+    "no-console": "error",
+    "no-alert": "error",
+
+    "no-param-reassign": "off",
+    "radix": "off",
+
+    "prefer-destructuring": "off",
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["webpack.*.config.js", "server/index.js"] }],
+
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}
