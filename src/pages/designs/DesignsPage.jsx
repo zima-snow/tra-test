@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import bemCn from 'bem-cn-fast';
 
-import { DesignListItem } from './components';
+import { DesignListItem, DesignFilter } from './components';
+import { Input } from '../../components';
 
 import './styles.less';
 
@@ -27,12 +28,29 @@ const defaultProps = {
 };
 
 const DesignsPage = ({ designsList }) => {
+  const onSearchInputChange = useCallback(() => {
+    // pass
+  }, []);
+
   return (
-    <div>
-      <h4 className={b('title')}>Assembly Processes</h4>
-      {designsList.map(design => (
-        <DesignListItem key={design._id} {...design} />
-      ))}
+    <div className={b()}>
+      <div className={b('filter')}>
+        <DesignFilter />
+      </div>
+      <div className={b('list')}>
+        <div className={b('toolbox-container')}>
+          <div className={b('title')}>Assembly Processes</div>
+          <div className={b('toolbox')}>
+            <div>Show</div>
+            <div>
+              <Input onChange={onSearchInputChange} />
+            </div>
+          </div>
+        </div>
+        {designsList.map(design => (
+          <DesignListItem key={design._id} {...design} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,0 +1,130 @@
+@import '../../../../less/variables.less';
+
+.tra-design-list-item {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  background: @color-white;
+  box-shadow: 0px 1px 4px rgba(54, 65, 76, 0.15);
+  border-radius: 4px;
+  width: 90%;
+  height: 132px;
+  margin-top: 12px;
+  padding-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 70px;
+  }
+
+  &__img-container {
+    margin-left: 10px;
+  }
+
+  &__status-container {
+    position: relative;
+    top: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    border-radius: 3px;
+    width: 40%;
+  }
+
+  &__status {
+    font-family: @font-family-alt;
+    font-size: 11px;
+    line-height: 13px;
+    text-align: center;
+    letter-spacing: 0.2px;
+    color: @color-black;
+    padding: 5%;
+
+    &_color_yellow {
+      background: @color-yellow;
+    }
+
+    &_color_white {
+      background: @color-white;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    flex-shrink: 0.75;
+  }
+
+  &__title {
+    font-family: @font-family;
+    font-size: 18px;
+    line-height: 24px;
+    color: @color-black;
+    margin-left: 5%;
+    margin-top: 5%;
+  }
+
+  &__description {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 5%;
+  }
+
+  &__description-name {
+    width: 50%;
+    font-family: @font-family-alt;
+    font-size: 14px;
+    line-height: 24px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  &__description-line {
+    border: 1px solid #BDC0C1;
+    width: 100%;
+    margin: 2%;
+    margin-bottom: 0;
+  }
+
+  &__description-value {
+    width: 75%;
+    font-family: @font-family-alt;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: right;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #000000;
+
+    &_color_red {
+      color: @color-red;
+    }
+
+    &_color_green {
+      color: @color-green;
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-end; 
+    justify-self: flex-end;
+    width: 100%;
+    margin-top: 1%;
+  }
+
+  &__buttons-container {
+    width: 100%;
+  }
+
+  &__button-detail {
+    background: #2B7CEE;
+    border-radius: 4px;
+    font-family: Lab Grotesque;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.144444px;
+    color: @color-white;
+    width: 40%;
+    height: 40px;
+    cursor: pointer;
+  }
+}

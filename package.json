@@ -61,6 +61,7 @@
     "classnames": "^2.2.6",
     "history": "^4.9.0",
     "lodash.get": "^4.4.2",
+    "luxon": "^1.17.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
