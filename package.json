@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node ./server/index.js",
-    "server-cli": "./node_modules/.bin/json-server --watch ./server/db.json --routes ./server/routes.json",
+    "server-cli": "./node_modules/.bin/json-server --watch ./server/db.json --routes ./server/routes.json --id _id",
     "start": "npm run dev",
     "lint": "./node_modules/.bin/eslint -c .eslintrc.json --ext .js --ext .jsx src",
     "lint:fix": "npm run lint -- --fix",
@@ -60,7 +60,9 @@
     "bem-cn-fast": "^1.0.2",
     "classnames": "^2.2.6",
     "history": "^4.9.0",
+    "lodash.findindex": "^4.6.0",
     "lodash.get": "^4.4.2",
+    "lodash.remove": "^4.7.0",
     "luxon": "^1.17.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",

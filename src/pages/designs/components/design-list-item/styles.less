@@ -61,6 +61,14 @@
     margin-top: 5%;
   }
 
+  &__title-input {
+    font-family: @font-family;
+    font-size: 18px;
+    line-height: 24px;
+    height: 32px;
+    padding-left: 3%;
+  }
+
   &__description {
     display: flex;
     flex-flow: row nowrap;
@@ -109,6 +117,10 @@
     justify-self: flex-end;
     width: 100%;
     margin-top: 1%;
+
+    &_hidden {
+      opacity: 0;
+    }
   }
 
   &__buttons-container {
@@ -118,7 +130,7 @@
   &__button-detail {
     background: #2B7CEE;
     border-radius: 4px;
-    font-family: Lab Grotesque;
+    font-family: @font-family-alt;
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0.144444px;
@@ -126,5 +138,15 @@
     width: 40%;
     height: 40px;
     cursor: pointer;
+    outline: 0;
+  }
+
+  &__link-detail {
+    text-decoration: none;
+    font-family: @font-family-alt;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0.144444px;
+    color: @color-white;
   }
 }

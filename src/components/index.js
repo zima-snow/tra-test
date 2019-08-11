@@ -1,7 +1,7 @@
 import Logo from './logo';
 import Input from './input';
 import { Button, IconButton } from './buttons';
-import { ArrowLeftIcon, RemoveIcon, CrossIcon, SearchIcon, EditIcon } from './icons';
+import { ArrowLeftIcon, RemoveIcon, CrossIcon, SearchIcon, EditIcon, CheckIcon } from './icons';
 
 export {
   Logo,
@@ -13,4 +13,5 @@ export {
   CrossIcon,
   SearchIcon,
   EditIcon,
+  CheckIcon,
 };

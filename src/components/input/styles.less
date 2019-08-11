@@ -1,0 +1,56 @@
+@import '../../less/variables.less';
+
+.tra-input {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+
+  &__input {
+    background: @color-white;
+    border: 1px solid #D6DADB;
+    box-sizing: border-box;
+    border-radius: 29px;
+    width: 100%;
+    outline: 0;
+
+    &_has-prefix {
+      border-left: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &_has-postfix {
+      border-right: none;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__prefix-container {
+    background: @color-white;
+    border: 1px solid #D6DADB;
+    border-right: none;
+    box-sizing: border-box;
+    border-radius: 29px 0 0 29px;
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+
+  &__prefix {
+    margin-top: 3px;
+  }
+
+  &__postfix-container {
+    background: @color-white;
+    border: 1px solid #D6DADB;
+    border-left: none;
+    box-sizing: border-box;
+    border-radius: 0 29px 29px 0;
+    padding-left: 1%;
+    padding-right: 1%;
+  }
+
+  &__postfix {
+    margin-top: 3px;
+  }
+}

@@ -1,5 +1,9 @@
-import { designsSaga } from './designs/sagas';
+import {
+  designsFilterSaga,
+  designsTitleUpdateSaga,
+  designsDeleteDesignSaga,
+} from './designs/sagas';
 
-const sagas = [designsSaga];
+const sagas = [designsFilterSaga, designsTitleUpdateSaga, designsDeleteDesignSaga];
 
 export default sagas;
