@@ -1,4 +1,5 @@
 import DesignsPageContainer from '../pages/designs';
+import { ProcessContainer } from '../pages/designs/components';
 
 import { MainLayout } from '../layouts';
 
@@ -14,11 +15,11 @@ export default {
     onEnterAction: traTestShowPage('designs', 'show'),
   },
   designEdit: {
-    path: '/design/:id',
+    path: '/process/:id',
     exact: true,
-    title: 'Design Edit',
-    component: DesignsPageContainer,
+    title: 'Process',
+    component: ProcessContainer,
     layout: MainLayout,
-    onEnterAction: traTestShowPage('design', 'edit'),
+    onEnterAction: traTestShowPage('process', 'show'),
   },
 };

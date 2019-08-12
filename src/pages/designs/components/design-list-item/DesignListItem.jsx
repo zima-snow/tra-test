@@ -19,6 +19,7 @@ import {
   fromNow,
 } from '../../../../utils';
 import { useHover } from '../../../../hooks';
+import { push } from '../../../../router';
 
 import './styles.less';
 
@@ -160,13 +161,14 @@ const DesignListItem = ({
             </IconButton>
           </div>
           <div className="fb-row fb-row_h_r m-t-20 m-r-25">
-            <Button className={b('button-detail')}>
+            <Button
+              className={b('button-detail')}
+              onClick={() => {
+                push(`/process/${_id}`);
+              }}
+            >
               <div className="fb-row fb-row_h_sb">
-                <div className="fb-self fb-self_v_c">
-                  <a className={b('link-detail')} href={`/designs/${_id}`}>
-                    View Process
-                  </a>
-                </div>
+                <div className="fb-self fb-self_v_c">View Process</div>
                 <ArrowLeftIcon />
               </div>
             </Button>

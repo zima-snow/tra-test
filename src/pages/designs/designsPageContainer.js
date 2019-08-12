@@ -11,6 +11,7 @@ import { entitiesSelector, registrySelector } from '../../selectors';
 const mapStateToProps = state => ({
   designsList: entitiesSelector('designs')(state, 'list'),
   filters: entitiesSelector('designs')(state, 'filters'),
+  totalCount: entitiesSelector('designs')(state, 'totalCount'),
   isLoading: registrySelector(state, 'designs-list-loading'),
 });
 

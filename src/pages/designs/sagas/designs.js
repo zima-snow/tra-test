@@ -10,6 +10,7 @@ import {
   designsPageResetData,
   designsPageUpdateList,
   designsPageRemoveListItem,
+  designsPageProcessReceive,
 } from '../actions';
 
 import { getObjectFromArrayByProp } from '../../../utils';
@@ -22,7 +23,7 @@ export function* getDesigns() {
       entitiesSelector('designs')(state, 'filters'),
     );
     const response = yield axios.get(
-      `http://127.0.0.1:3000/api/designs?_page=${page}&_limit=${limit}&_sort=updated&_order=${updated}`,
+      `/api/designs?_page=${page}&_limit=${limit}&_sort=updated&_order=${updated}`,
     );
 
     yield put(designsPageDataReceive(response.data));
@@ -56,20 +57,22 @@ export function* handleDesignsByFilter(action) {
       assemble: assemble !== undefined ? assemble.key : filters.assemble,
       review: review !== undefined ? review.key : filters.review,
       updated: updated && updated !== filters.updated ? updated : filters.updated,
-      page: page && page !== filters.page ? page : filters.page,
+      page: page && page !== filters.page ? page : 1,
       limit: limit && limit !== filters.limit ? limit : filters.limit,
     };
 
     let params = `_page=${filter.page}&_limit=${filter.limit}
       &_sort=updated&_order=${filter.updated}&`;
 
-    if (filter.title.length !== 0) params = `${params}title=${filter.title}&`;
+    if (filter.title.length !== 0) params = `${params}q=${filter.title}&`;
     if (filter.assemble !== 'any') params = `${params}assemblyStatus=${filter.assemble}&`;
     if (filter.review !== 'any') params = `${params}reviewStatus=${filter.review}&`;
 
-    const response = yield axios.get(`http://127.0.0.1:3000/api/designs?${params}`);
+    const response = yield axios.get(`/api/designs?${params}`);
 
-    yield put(designsPageBatchDataReceive(response.data, filter));
+    yield put(
+      designsPageBatchDataReceive(response.data, filter, response.headers['x-total-count']),
+    );
   } catch (error) {
     console.error(error);
   } finally {
@@ -88,7 +91,7 @@ export function* handleDesignTitleUpdate(action) {
     const list = yield select(state => entitiesSelector('designs')(state, 'list'));
     const current = getObjectFromArrayByProp(list, { _id });
     const response = yield axios.put(
-      `http://127.0.0.1:3000/api/designs/${_id}`,
+      `/api/designs/${_id}`,
       { ...current, title },
       {
         headers: {
@@ -112,12 +115,28 @@ export function* handleDesignDelete(action) {
     const {
       payload: { _id },
     } = action;
-    yield axios.delete(`http://127.0.0.1:3000/api/designs/${_id}`);
+    yield axios.delete(`/api/designs/${_id}`);
 
     yield put(designsPageRemoveListItem(_id));
   } catch (error) {
     console.error(error);
   } finally {
     yield put(traTestRegistryUpdate('design-deleting', false));
+  }
+}
+
+export function* handleGetProcess() {
+  try {
+    yield put(traTestRegistryUpdate('process-loading', true));
+
+    const paths = document.location.pathname.split('/');
+
+    const response = yield axios.get(`/api/designs/${paths[paths.length - 1]}`);
+
+    yield put(designsPageProcessReceive(response.data));
+  } catch (error) {
+    console.error(error);
+  } finally {
+    yield put(traTestRegistryUpdate('process-loading', false));
   }
 }

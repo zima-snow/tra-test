@@ -10,6 +10,10 @@ import { traTestInit } from '../actions';
 import AppRoute from './AppRoute';
 import pages from './config';
 
+const history = createBrowserHistory();
+
+const { push, replace, block } = history;
+
 const propTypes = {
   isLoading: PropTypes.bool,
   onInit: PropTypes.func,
@@ -30,7 +34,7 @@ const AppRouter = ({ onInit, isLoading }) => {
   }
 
   return (
-    <Router history={createBrowserHistory()}>
+    <Router history={history}>
       <Switch>
         <Route exact path="/" component={() => <Redirect to="/designs" />} />
         {Object.keys(pages).map(pageKey => (
@@ -58,3 +62,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(AppRouter);
+
+export { push, replace, block };

@@ -15,6 +15,14 @@
     width: 90%;
   }
 
+  &__title-container {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-top: 1%;
+    width: 30%
+  }
+
   &__toolbox {
     display: flex;
     flex-flow: row nowrap;
@@ -29,8 +37,19 @@
     font-size: 24px;
     line-height: 24px;
     color: @color-black;
-    margin-top: 1%;
-    width: 30%
+  }
+
+  &__count {
+    background: #7F8487;
+    border-radius: 14px;
+    font-family: @font-family-alt;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    color: @color-white;
+    margin-left: 10px;
+    margin-top: 3px;
+    padding: 2px 10px;
   }
 
   &__sort-container {
@@ -70,5 +89,15 @@
 
   &__clear-icon {
     border-radius: 50%;
+  }
+
+  &__loading-next {
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    &_hidden {
+      position: absolute;
+      right: 200%;
+    }
   }
 }

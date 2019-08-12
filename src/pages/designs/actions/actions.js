@@ -9,6 +9,8 @@ import {
   DESIGNS_PAGE_DELETE_DESIGN,
   DESIGNS_PAGE_UPDATE_LIST,
   DESIGNS_PAGE_REMOVE_LIST_ITEM,
+  DESIGNS_PAGE_GET_PROCESS,
+  DESIGNS_PAGE_PROCESS_RECEIVE,
 } from './consts';
 
 export const designsPageOpen = () => ({
@@ -31,9 +33,9 @@ export const designsPageDataReceive = data => ({
   payload: { data },
 });
 
-export const designsPageBatchDataReceive = (batchData, filters) => ({
+export const designsPageBatchDataReceive = (batchData, filters, totalCount) => ({
   type: DESIGNS_PAGE_BATCH_DATA_RECEIVE,
-  payload: { batchData, filters },
+  payload: { batchData, filters, totalCount },
 });
 
 export const designsPageUpdateTitle = (_id, title) => ({
@@ -58,4 +60,13 @@ export const designsPageUpdateList = (_id, data) => ({
 export const designsPageRemoveListItem = _id => ({
   type: DESIGNS_PAGE_REMOVE_LIST_ITEM,
   payload: { _id },
+});
+
+export const designsPageGetProcess = () => ({
+  type: DESIGNS_PAGE_GET_PROCESS,
+});
+
+export const designsPageProcessReceive = process => ({
+  type: DESIGNS_PAGE_PROCESS_RECEIVE,
+  payload: { process },
 });

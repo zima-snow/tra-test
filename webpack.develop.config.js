@@ -1,10 +1,12 @@
+const fs = require('fs');
+
 module.exports = require('./webpack.init.config')({
   buildMode: 'develop',
   devtool: 'source-map',
   debug: true,
   watch: true,
   devServer: {
-    contentBase: process.cwd(),
+    contentBase: fs.realpathSync(process.cwd()),
     publicPath: '',
     host: '127.0.0.1',
     port: 4000,
@@ -28,7 +30,7 @@ module.exports = require('./webpack.init.config')({
     disableHostCheck: true,
     proxy: {
       '/api/*': {
-        target: 'http://127.0.0.1:9000',
+        target: 'http://127.0.0.1:3000',
         secure: false,
         changeOrigin: true,
         pathRewrite: {

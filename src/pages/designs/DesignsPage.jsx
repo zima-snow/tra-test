@@ -48,6 +48,7 @@ const defaultProps = {
 const DesignsPage = ({
   designsList,
   filters,
+  totalCount,
   isLoading,
   onFilter,
   onTitleUpdate,
@@ -59,6 +60,11 @@ const DesignsPage = ({
   const [searchValue, setSearchValue] = useState(filters.title);
   const debouncedSearchValue = useDebounce(searchValue, 1000);
   const [currentOrder, setCurrentOrder] = useState(filters.updated);
+  const [isShowLoadingNext, setIsShowLoadingNext] = useState(true);
+
+  useEffect(() => {
+    setIsShowLoadingNext(designsList.length === filters.page * filters.limit);
+  }, [designsList.length, filters.page, filters.limit]);
 
   useEffect(() => {
     if (onFilter) {
@@ -94,7 +100,10 @@ const DesignsPage = ({
       </div>
       <div className={b('list')}>
         <div className={b('toolbox-container')}>
-          <div className={b('title')}>Assembly Processes</div>
+          <div className={b('title-container')}>
+            <div className={b('title')}>Assembly Processes</div>
+            <div className={b('count')}>{totalCount}</div>
+          </div>
           <div className={b('toolbox')}>
             <div>Show</div>
             <div className={b('sort-container')}>
@@ -142,7 +151,7 @@ const DesignsPage = ({
             {...design}
           />
         ))}
-        <div ref={endListRef} className="m-v-20">
+        <div ref={endListRef} className={b('loading-next', { hidden: !isShowLoadingNext })}>
           {endListOnScreen && 'Loading...'}
         </div>
       </div>

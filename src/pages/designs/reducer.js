@@ -7,12 +7,14 @@ import {
   DESIGNS_PAGE_RESET_DATA,
   DESIGNS_PAGE_UPDATE_LIST,
   DESIGNS_PAGE_REMOVE_LIST_ITEM,
+  DESIGNS_PAGE_PROCESS_RECEIVE,
 } from './actions';
 
 import { upsertObjectToArray } from '../../utils';
 
 const defaultState = {
   list: [],
+  totalCount: 0,
   filters: {
     title: '',
     assemble: 'any',
@@ -20,6 +22,14 @@ const defaultState = {
     updated: 'desc',
     page: 1,
     limit: 20,
+  },
+  process: {
+    img: null,
+    title: '',
+    assemblyStatus: '',
+    reviewStatus: '',
+    updated: '',
+    age: 0,
   },
 };
 
@@ -45,7 +55,7 @@ function filtersReceive(action, state) {
 }
 
 function batchDataReceive(action, state) {
-  const { batchData, filters } = action.payload;
+  const { batchData, filters, totalCount } = action.payload;
 
   return {
     ...state,
@@ -54,6 +64,7 @@ function batchDataReceive(action, state) {
       ...state.filters,
       ...filters,
     },
+    totalCount,
   };
 }
 
@@ -79,10 +90,23 @@ function removeListItem(action, state) {
   };
 }
 
+function updateProcess(action, state) {
+  const { process } = action.payload;
+
+  return {
+    ...state,
+    process,
+  };
+}
+
 function resetData(action, state) {
   return {
     ...state,
     list: [],
+    filter: {
+      ...state.filters,
+      page: 1,
+    },
   };
 }
 
@@ -98,6 +122,8 @@ export default (state = defaultState, action) => {
       return updateListItem(action, state);
     case DESIGNS_PAGE_REMOVE_LIST_ITEM:
       return removeListItem(action, state);
+    case DESIGNS_PAGE_PROCESS_RECEIVE:
+      return updateProcess(action, state);
     case DESIGNS_PAGE_RESET_DATA:
       return resetData(action, state);
     default:

@@ -6,6 +6,7 @@ import {
   DESIGNS_PAGE_GET_BATCH_DATA,
   DESIGNS_PAGE_UPDATE_TITLE,
   DESIGNS_PAGE_DELETE_DESIGN,
+  DESIGNS_PAGE_GET_PROCESS,
 } from '../actions';
 
 import {
@@ -13,6 +14,7 @@ import {
   handleDesignsByFilter,
   handleDesignTitleUpdate,
   handleDesignDelete,
+  handleGetProcess,
 } from './designs';
 
 export function* designsSaga() {
@@ -29,4 +31,8 @@ export function* designsTitleUpdateSaga() {
 
 export function* designsDeleteDesignSaga() {
   yield takeLatest([DESIGNS_PAGE_DELETE_DESIGN], handleDesignDelete);
+}
+
+export function* designsGetProcessSaga() {
+  yield takeLatest([DESIGNS_PAGE_GET_PROCESS], handleGetProcess);
 }
