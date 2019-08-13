@@ -30,6 +30,7 @@ const propTypes = {
     page: PropTypes.number,
     limit: PropTypes.number,
   }),
+  totalCount: PropTypes.string,
   isLoading: PropTypes.bool,
   onFilter: PropTypes.func,
   onTitleUpdate: PropTypes.func,
@@ -39,6 +40,7 @@ const propTypes = {
 const defaultProps = {
   designsList: [],
   filters: {},
+  totalCount: 0,
   isLoading: false,
   onFilter: () => {},
   onTitleUpdate: () => {},

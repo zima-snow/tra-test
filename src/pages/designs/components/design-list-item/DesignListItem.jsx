@@ -46,7 +46,7 @@ const DesignListItem = ({
   img,
   assemblyStatus,
   reviewStatus,
-  title: propTitle,
+  title,
   updated,
   onTitleUpdate,
   onDesignDelete,
@@ -64,6 +64,12 @@ const DesignListItem = ({
         ),
   );
 
+  const convertTitle = useRef(t => {
+    const parts = t.split(/: | v/);
+    const capitalized = toCapitalize(parts[1].toLowerCase());
+    return `${parts[0]}: ${capitalized} v${parts[2]}`;
+  });
+
   const [convertedAssemblyStatus, setConvertedAssembleStatus] = useState(
     convertAssemblyStatus.current(assemblyStatus),
   );
@@ -76,24 +82,25 @@ const DesignListItem = ({
     DateTime.fromFormat(updated, 'yyyy-MM-ddThh:mm:ss ZZ'),
   );
 
+  const [convertedTitle, setConvertedTitle] = useState(convertTitle.current(title));
   const [isEdit, setIsEdit] = useState(false);
-  const [title, setTitle] = useState(propTitle);
 
   useEffect(() => {
     setConvertedAssembleStatus(convertAssemblyStatus.current(assemblyStatus));
     setConvertedReviewStatus(convertUpperCaseSnakeCaseToCapitalizeText(reviewStatus));
     setUpdatedDateTime(DateTime.fromFormat(updated, 'yyyy-MM-ddThh:mm:ss ZZ'));
-  }, [assemblyStatus, reviewStatus, updated]);
+    setConvertedTitle(convertTitle.current(title));
+  }, [assemblyStatus, reviewStatus, title, updated]);
 
   const handleIsEditChange = useCallback(() => {
     if (isEdit && onTitleUpdate) {
-      onTitleUpdate(_id, title);
+      onTitleUpdate(_id, convertedTitle);
     }
     setIsEdit(!isEdit);
-  }, [_id, isEdit, onTitleUpdate, title]);
+  }, [_id, isEdit, onTitleUpdate, convertedTitle]);
 
   const handleTitleChange = useCallback(value => {
-    setTitle(value);
+    setConvertedTitle(value);
   }, []);
 
   const handleDesignDelete = useCallback(() => {
@@ -114,14 +121,18 @@ const DesignListItem = ({
             {convertedAssemblyStatus}
           </div>
         </div>
-        <img src={img} alt={title} className="m-l-25" />
+        <img src={img} alt={convertedTitle} className="m-l-25" />
       </div>
       <div className={b('content')}>
         <div className={b('title')}>
           {!isEdit ? (
-            title
+            convertedTitle
           ) : (
-            <Input className={b('title-input')} value={title} onChange={handleTitleChange} />
+            <Input
+              className={b('title-input')}
+              value={convertedTitle}
+              onChange={handleTitleChange}
+            />
           )}
         </div>
         <div className={b('description')}>

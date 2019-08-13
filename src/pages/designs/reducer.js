@@ -14,7 +14,7 @@ import { upsertObjectToArray } from '../../utils';
 
 const defaultState = {
   list: [],
-  totalCount: 0,
+  totalCount: '0',
   filters: {
     title: '',
     assemble: 'any',

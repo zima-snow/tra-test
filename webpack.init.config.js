@@ -11,7 +11,9 @@ module.exports = options => {
 
     output: {
       path: `${__dirname}/dist`,
-      filename: 'js/bundle.js',
+      filename:
+        process.env.NODE_ENV !== 'production' ? '[name].[hash:8].js' : '[name].[contenthash].js',
+      publicPath: '/',
     },
 
     externals: {},

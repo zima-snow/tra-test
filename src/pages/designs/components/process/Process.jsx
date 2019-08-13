@@ -46,6 +46,13 @@ const Process = ({
         ),
   );
 
+  const convertTitle = useRef(t => {
+    if (t.length === 0) return t;
+    const parts = t.split(/: | v/);
+    const capitalized = toCapitalize(parts[1].toLowerCase());
+    return `${parts[0]}: ${capitalized} v${parts[2]}`;
+  });
+
   const [convertedAssemblyStatus, setConvertedAssembleStatus] = useState(
     convertAssemblyStatus.current(assemblyStatus),
   );
@@ -58,11 +65,14 @@ const Process = ({
     DateTime.fromFormat(updated, 'yyyy-MM-ddThh:mm:ss ZZ'),
   );
 
+  const [convertedTitle, setConvertedTitle] = useState(convertTitle.current(title));
+
   useEffect(() => {
     setConvertedAssembleStatus(convertAssemblyStatus.current(assemblyStatus));
     setConvertedReviewStatus(convertUpperCaseSnakeCaseToCapitalizeText(reviewStatus));
     setUpdatedDateTime(DateTime.fromFormat(updated, 'yyyy-MM-ddThh:mm:ss ZZ'));
-  }, [assemblyStatus, reviewStatus, updated]);
+    setConvertedTitle(convertTitle.current(title));
+  }, [assemblyStatus, reviewStatus, title, updated]);
 
   if (isLoading) {
     return 'Loading...';
@@ -81,11 +91,11 @@ const Process = ({
               {convertedAssemblyStatus}
             </div>
           </div>
-          <img src={img} alt={title} className="m-l-25" />
+          <img src={img} alt={convertedTitle} className="m-l-25" />
         </div>
         <div className={b('description')}>
           <div className={b('description-container')}>
-            <div className={b('title')}>{title}</div>
+            <div className={b('title')}>{convertedTitle}</div>
           </div>
           <div className={b('description-container')}>
             <div className={b('description-name')}>Review</div>
